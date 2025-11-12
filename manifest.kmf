@@ -33,26 +33,26 @@ action: forcecopy
 //
 
 //copy debug dll
-origin: debug@_KalaAudio1d.dll
-target: ..@Circuit-chan@_external_shared@KalaAudio@debug@_KalaAudio1d.dll, ..@Elypso-engine@_external_shared@KalaAudio@debug@_KalaAudio1d.dll
+origin: debug@KalaAudio1d.dll
+target: ..@Circuit-chan@_external_shared@KalaAudio@debug@KalaAudio1d.dll, ..@Elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.dll
 action: forcecopy
 
 //copy debug lib
-origin: debug@_KalaAudio1d.lib
-target: ..@Circuit-chan@_external_shared@KalaAudio@debug@_KalaAudio1d.lib, ..@Elypso-engine@_external_shared@KalaAudio@debug@_KalaAudio1d.lib
+origin: debug@KalaAudio1d.lib
+target: ..@Circuit-chan@_external_shared@KalaAudio@debug@KalaAudio1d.lib, ..@Elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.lib
 action: forcecopy
 
 //copy debug pdb
-origin: debug@_KalaAudio1d.pdb
-target: ..@Circuit-chan@_external_shared@KalaAudio@debug@_KalaAudio1d.pdb, ..@Elypso-engine@_external_shared@KalaAudio@debug@_KalaAudio1d.pdb
+origin: debug@KalaAudio1d.pdb
+target: ..@Circuit-chan@_external_shared@KalaAudio@debug@KalaAudio1d.pdb, ..@Elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.pdb
 action: forcecopy
 
 //copy release dll
-origin: release@_KalaAudio1.dll
-target: ..@Circuit-chan@_external_shared@KalaAudio@release@_KalaAudio1.dll, ..@Elypso-engine@_external_shared@KalaAudio@release@_KalaAudio1.dll
+origin: release@KalaAudio1.dll
+target: ..@Circuit-chan@_external_shared@KalaAudio@release@KalaAudio1.dll, ..@Elypso-engine@_external_shared@KalaAudio@release@KalaAudio1.dll
 action: forcecopy
 
 //copy release lib
-origin: release@_KalaAudio1.lib
-target: ..@Circuit-chan@_external_shared@KalaAudio@release@_KalaAudio1.lib, ..@Elypso-engine@_external_shared@KalaAudio@release@_KalaAudio1.lib
+origin: release@KalaAudio1.lib
+target: ..@Circuit-chan@_external_shared@KalaAudio@release@KalaAudio1.lib, ..@Elypso-engine@_external_shared@KalaAudio@release@KalaAudio1.lib
 action: forcecopy
