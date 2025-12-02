@@ -18,9 +18,9 @@
 
 #include "audio.hpp"
 
-using KalaHeaders::wrap;
-using KalaHeaders::Log;
-using KalaHeaders::LogType;
+using KalaHeaders::KalaMath::wrap;
+using KalaHeaders::KalaLog::Log;
+using KalaHeaders::KalaLog::LogType;
 
 using KalaAudio::Audio;
 using KalaAudio::AudioListener;
