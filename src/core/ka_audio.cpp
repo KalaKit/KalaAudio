@@ -16,7 +16,8 @@
 
 #include "KalaHeaders/log_utils.hpp"
 
-#include "audio.hpp"
+#include "core/ka_core.hpp"
+#include "core/ka_audio.hpp"
 
 using KalaHeaders::KalaMath::wrap;
 using KalaHeaders::KalaLog::Log;
@@ -24,6 +25,7 @@ using KalaHeaders::KalaLog::LogType;
 
 using KalaAudio::Audio;
 using KalaAudio::AudioListener;
+using KalaAudio::Core::KalaAudioCore;
 
 using std::unordered_map;
 using std::string;
@@ -78,8 +80,6 @@ static void PrintErrorMessage(
 static void PrintWarningMessage(
 	const string& message,
 	bool originatesFromAudio = false);
-	
-static u32 globalID;
 
 namespace KalaAudio
 {
@@ -528,7 +528,7 @@ namespace KalaAudio
 		ma_sound_set_volume(&pData->sound, 1.0f);
 		ma_sound_set_pitch(&pData->sound, 1.0f);
 
-		u32 newID = ++globalID;
+		u32 newID = ++KalaAudioCore::globalID;
 
 		playerMap[newID] = move(pData);
 
