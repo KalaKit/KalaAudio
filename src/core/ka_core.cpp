@@ -4,6 +4,7 @@
 //Read LICENSE.md for more information.
 
 #include <string>
+#include <csignal>
 
 #include "KalaHeaders/log_utils.hpp"
 
@@ -14,9 +15,16 @@ using KalaHeaders::KalaLog::Log;
 using KalaHeaders::KalaLog::LogType;
 
 using std::to_string;
+using std::raise;
 
 namespace KalaAudio::Core
 {
+	//The ID that is bumped by every object when it needs a new ID
+	static u32 globalID{};
+
+	void KalaAudioCore::SetGlobalID(u32 newID) { globalID = newID; }
+	u32 KalaAudioCore::GetGlobalID() { return globalID; }
+
 	void KalaAudioCore::CleanAllWindowResources(u32 windowID)
 	{
 		Log::Print(
@@ -34,6 +42,32 @@ namespace KalaAudio::Core
 			
 		if (Audio::IsInitialized()) Audio::Shutdown();
 		
-		AudioPlayer::registry.RemoveAllContent();
+		AudioPlayer::GetRegistry().RemoveAllContent();
+	}
+
+	void KalaAudioCore::ForceClose(
+		const string& target,
+		const string& reason)
+	{
+		Log::Print(
+			"\n================"
+			"\nFORCE CLOSE"
+			"\n================\n",
+			true);
+
+		Log::Print(
+			reason,
+			target,
+			LogType::LOG_ERROR,
+			2,
+			true,
+			TimeFormat::TIME_NONE,
+			DateFormat::DATE_NONE);
+
+#ifdef _WIN32
+		__debugbreak();
+#else
+		raise(SIGTRAP);
+#endif
 	}
 }

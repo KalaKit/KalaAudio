@@ -87,6 +87,15 @@ namespace KalaAudio
 	// AUDIO CORE
 	//
 
+	static inline bool isInitialized;
+	static inline bool isVerboseLoggingEnabled;
+
+	//default is 5MB
+	static inline u32 streamThreshold = 5242880u;
+
+	void Audio::SetVerboseLoggingState(bool newState) { isVerboseLoggingEnabled = newState; }
+	bool Audio::IsVerboseLoggingEnabled() { return isVerboseLoggingEnabled; }
+
 	bool Audio::Initialize(
 		u32 listeners,
 		SampleRate sampleRate)
@@ -142,6 +151,16 @@ namespace KalaAudio
 
 		return true;
 	}
+	bool Audio::IsInitialized() { return isInitialized; }
+
+	void Audio::SetStreamThreshold(u32 newThreshold)
+	{
+		streamThreshold = clamp(
+			newThreshold,
+			MIN_STREAM_SIZE,
+			MAX_STREAM_SIZE);
+	};
+	u32 Audio::GetStreamThreshold() { return streamThreshold; }
 
 	void Audio::Shutdown()
 	{
@@ -409,6 +428,10 @@ namespace KalaAudio
 	// EACH INDIVIDUAL CREATED AUDIO PLAYER
 	//
 
+	static KalaAudioRegistry<AudioPlayer> registry{};
+
+	KalaAudioRegistry<AudioPlayer>& AudioPlayer::GetRegistry() { return registry; }
+
 	AudioPlayer* AudioPlayer::CreateAudioPlayer(
 		const string& name,
 		const string& filePath)
@@ -528,7 +551,8 @@ namespace KalaAudio
 		ma_sound_set_volume(&pData->sound, 1.0f);
 		ma_sound_set_pitch(&pData->sound, 1.0f);
 
-		u32 newID = ++KalaAudioCore::globalID;
+		u32 newID = KalaAudioCore::GetGlobalID() + 1;
+		KalaAudioCore::SetGlobalID(newID);
 
 		playerMap[newID] = move(pData);
 
@@ -597,6 +621,11 @@ namespace KalaAudio
 				LogType::LOG_INFO);
 		}
 	}
+	const string& AudioPlayer::GetName() const { return name; }
+
+	const string& AudioPlayer::GetPath() const { return filePath; }
+
+	u32 AudioPlayer::GetID() const { return ID; }
 
 	void AudioPlayer::Play() const
 	{
@@ -725,6 +754,7 @@ namespace KalaAudio
 				LogType::LOG_INFO);
 		}
 	}
+	bool AudioPlayer::IsPaused() const { return isPaused; };
 
 	void AudioPlayer::SetLoopState(bool newState) const
 	{
