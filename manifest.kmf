@@ -8,22 +8,22 @@
 
 //copy readme
 origin: readme.md
-target: ..@_games@Circuit-chan@_external_shared@KalaAudio@README.md, ..@_games@Shooter-game@_external_shared@KalaAudio@README.md, ..@Elypso-engine@_external_shared@KalaAudio@README.md
+target: ..@Elypso-engine@_external_shared@KalaAudio@README.md, ..@kalakit_test_projects@Game-test@_external_shared@KalaAudio@README.md
 action: forcecopy
 
 //copy license
 origin: LICENSE.md
-target: ..@_games@Circuit-chan@_external_shared@KalaAudio@LICENSE.md, ..@_games@Shooter-game@_external_shared@KalaAudio@LICENSE.md, ..@Elypso-engine@_external_shared@KalaAudio@LICENSE.md
+target: ..@Elypso-engine@_external_shared@KalaAudio@LICENSE.md, ..@kalakit_test_projects@Game-test@_external_shared@KalaAudio@LICENSE.md
 action: forcecopy
 
 //copy include files
 origin: include
-target: ..@_games@Circuit-chan@_external_shared@KalaAudio@include, ..@_games@Shooter-game@_external_shared@KalaAudio@include, ..@Elypso-engine@_external_shared@KalaAudio@include
+target: ..@Elypso-engine@_external_shared@KalaAudio@include, ..@kalakit_test_projects@Game-test@_external_shared@KalaAudio@include
 action: forcecopy
 
 //copy docs
 origin: docs
-target: ..@_games@Circuit-chan@_external_shared@KalaAudio@docs, ..@_games@Shooter-game@_external_shared@KalaAudio@docs, ..@Elypso-engine@_external_shared@KalaAudio@docs
+target: ..@Elypso-engine@_external_shared@KalaAudio@docs, ..@kalakit_test_projects@Game-test@_external_shared@KalaAudio@docs
 action: forcecopy
 
 //
@@ -32,25 +32,34 @@ action: forcecopy
 
 //copy debug dll
 origin: debug@KalaAudio1d.dll
-target: ..@_games@Circuit-chan@_external_shared@KalaAudio@debug@KalaAudio1d.dll, ..@_games@Shooter-game@_external_shared@KalaAudio@debug@KalaAudio1d.dll, ..@Elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.dll
+target: ..@Elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.dll, ..@kalakit_test_projects@Game-test@_external_shared@KalaAudio@debug@KalaAudio1d.dll
 action: forcecopy
 
 //copy debug lib
 origin: debug@KalaAudio1d.lib
-target: ..@_games@Circuit-chan@_external_shared@KalaAudio@debug@KalaAudio1d.lib, ..@_games@Shooter-game@_external_shared@KalaAudio@debug@KalaAudio1d.lib, ..@Elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.lib
+target: ..@Elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.lib, ..@kalakit_test_projects@Game-test@_external_shared@KalaAudio@debug@KalaAudio1d.lib
 action: forcecopy
 
 //copy debug pdb
 origin: debug@KalaAudio1d.pdb
-target: ..@_games@Circuit-chan@_external_shared@KalaAudio@debug@KalaAudio1d.pdb, ..@_games@Shooter-game@_external_shared@KalaAudio@debug@KalaAudio1d.pdb, ..@Elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.pdb
+target: ..@Elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.pdb, ..@kalakit_test_projects@Game-test@_external_shared@KalaAudio@debug@KalaAudio1d.pdb
 action: forcecopy
 
 //copy release dll
 origin: release@KalaAudio1.dll
-target: ..@_games@Circuit-chan@_external_shared@KalaAudio@release@KalaAudio1.dll, ..@_games@Shooter-game@_external_shared@KalaAudio@release@KalaAudio1.dll, ..@Elypso-engine@_external_shared@KalaAudio@release@KalaAudio1.dll
+target: ..@Elypso-engine@_external_shared@KalaAudio@release@KalaAudio1.dll, ..@kalakit_test_projects@Game-test@_external_shared@KalaAudio@release@KalaAudio1.dll
 action: forcecopy
 
 //copy release lib
 origin: release@KalaAudio1.lib
-target: ..@_games@Circuit-chan@_external_shared@KalaAudio@release@KalaAudio1.lib, ..@_games@Shooter-game@_external_shared@KalaAudio@release@KalaAudio1.lib, ..@Elypso-engine@_external_shared@KalaAudio@release@KalaAudio1.lib
+target: ..@Elypso-engine@_external_shared@KalaAudio@release@KalaAudio1.lib, ..@kalakit_test_projects@Game-test@_external_shared@KalaAudio@release@KalaAudio1.lib
 action: forcecopy
+
+//
+// EXTERNAL LIBRARIES
+//
+
+//KalaHeaders
+origin: _external_shared@KalaHeaders
+target: ..@Elypso-engine@_external_shared@KalaHeaders, ..@kalakit_test_projects@Game-test@_external_shared@KalaHeaders
+action: copy
