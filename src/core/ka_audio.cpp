@@ -24,7 +24,6 @@ using KalaHeaders::KalaLog::Log;
 using KalaHeaders::KalaLog::LogType;
 
 using KalaAudio::Audio;
-using KalaAudio::AudioListener;
 using KalaAudio::Core::KalaAudioCore;
 
 using std::unordered_map;
@@ -554,7 +553,7 @@ namespace KalaAudio
 		u32 newID = KalaAudioCore::GetGlobalID() + 1;
 		KalaAudioCore::SetGlobalID(newID);
 
-		playerMap[newID] = move(pData);
+		playerMap[newID] = std::move(pData);
 
 		unique_ptr<AudioPlayer> newTrack = make_unique<AudioPlayer>();
 		AudioPlayer* trackPtr = newTrack.get();
@@ -563,7 +562,7 @@ namespace KalaAudio
 		trackPtr->filePath = filePath;
 		trackPtr->ID = newID;
 
-		registry.AddContent(newID, move(newTrack));
+		registry.AddContent(newID, std::move(newTrack));
 
 		Log::Print(
 			"Created audio file '" + name + "' with ID '" + to_string(newID) + "'!",

@@ -3,8 +3,11 @@
 //This is free software, and you are welcome to redistribute it under certain conditions.
 //Read LICENSE.md for more information.
 
-#include <string>
+#ifdef __linux__
 #include <csignal>
+#endif
+
+#include <string>
 
 #include "KalaHeaders/log_utils.hpp"
 
@@ -13,9 +16,14 @@
 
 using KalaHeaders::KalaLog::Log;
 using KalaHeaders::KalaLog::LogType;
+using KalaHeaders::KalaLog::TimeFormat;
+using KalaHeaders::KalaLog::DateFormat;
+
+#ifdef __linux__
+using std::raise;
+#endif
 
 using std::to_string;
-using std::raise;
 
 namespace KalaAudio::Core
 {
