@@ -5,9 +5,6 @@ set(PROGRAM_VERSION_NUMBER 1.0.0.0)
 
 project("KalaAudio" VERSION ${PROGRAM_VERSION_NUMBER} LANGUAGES C CXX)
 
-# Adds a '_' prefix in front of the created binary files if set to TRUE
-set(KALA_PRERELEASE TRUE)
-
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -20,8 +17,10 @@ endif()
 # Platform Detection
 if (WIN32)
     message(STATUS "[KALAAUDIO] Platform = Windows")
+elseif(UNIX)
+	message(STATUS "[KALAAUDIO] Platform = Unix")
 else()
-    message(FATAL_ERROR "[KALAAUDIO] Unsupported platform. Only Windows is supported.")
+    message(FATAL_ERROR "[KALAAUDIO] Unsupported platform. Only Windows and Unix are supported.")
 endif()
 
 # Build Type Detection
