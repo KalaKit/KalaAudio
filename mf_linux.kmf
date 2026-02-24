@@ -7,7 +7,7 @@
 //
 
 //copy readme
-origin: readme.md
+origin: README.md
 target: ..@Elypso-engine@_external_shared@KalaAudio@README.md, ..@kalakit_test_projects@_external_shared@KalaAudio@README.md
 action: forcecopy
 
