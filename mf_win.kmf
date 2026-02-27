@@ -8,22 +8,22 @@
 
 //copy readme
 origin: README.md
-target: ..@Elypso-engine@_external_shared@KalaAudio@README.md, ..@kalakit_test_projects@_external_shared@KalaAudio@README.md
+target: ..@elypso-engine@_external_shared@KalaAudio@README.md, ..@kalakit_test_projects@_external_shared@KalaAudio@README.md
 action: forcecopy
 
 //copy license
 origin: LICENSE.md
-target: ..@Elypso-engine@_external_shared@KalaAudio@LICENSE.md, ..@kalakit_test_projects@_external_shared@KalaAudio@LICENSE.md
+target: ..@elypso-engine@_external_shared@KalaAudio@LICENSE.md, ..@kalakit_test_projects@_external_shared@KalaAudio@LICENSE.md
 action: forcecopy
 
 //copy include files
 origin: include
-target: ..@Elypso-engine@_external_shared@KalaAudio@include, ..@kalakit_test_projects@_external_shared@KalaAudio@include
+target: ..@elypso-engine@_external_shared@KalaAudio@include, ..@kalakit_test_projects@_external_shared@KalaAudio@include
 action: forcecopy
 
 //copy docs
 origin: docs
-target: ..@Elypso-engine@_external_shared@KalaAudio@docs, ..@kalakit_test_projects@_external_shared@KalaAudio@docs
+target: ..@elypso-engine@_external_shared@KalaAudio@docs, ..@kalakit_test_projects@_external_shared@KalaAudio@docs
 action: forcecopy
 
 //
@@ -32,27 +32,27 @@ action: forcecopy
 
 //copy debug dll
 origin: build@windows-debug@KalaAudio1d.dll
-target: ..@Elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.dll, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@KalaAudio1d.dll
+target: ..@elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.dll, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@KalaAudio1d.dll
 action: forcecopy
 
 //copy debug lib
 origin: build@windows-debug@KalaAudio1d.lib
-target: ..@Elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.lib, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@KalaAudio1d.lib
+target: ..@elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.lib, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@KalaAudio1d.lib
 action: forcecopy
 
 //copy debug pdb
 origin: build@windows-debug@KalaAudio1d.pdb
-target: ..@Elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.pdb, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@KalaAudio1d.pdb
+target: ..@elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.pdb, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@KalaAudio1d.pdb
 action: forcecopy
 
 //copy release dll
 origin: build@windows-release@KalaAudio1.dll
-target: ..@Elypso-engine@_external_shared@KalaAudio@release@KalaAudio1.dll, ..@kalakit_test_projects@_external_shared@KalaAudio@release@KalaAudio1.dll
+target: ..@elypso-engine@_external_shared@KalaAudio@release@KalaAudio1.dll, ..@kalakit_test_projects@_external_shared@KalaAudio@release@KalaAudio1.dll
 action: forcecopy
 
 //copy release lib
 origin: build@windows-release@KalaAudio1.lib
-target: ..@Elypso-engine@_external_shared@KalaAudio@release@KalaAudio1.lib, ..@kalakit_test_projects@_external_shared@KalaAudio@release@KalaAudio1.lib
+target: ..@elypso-engine@_external_shared@KalaAudio@release@KalaAudio1.lib, ..@kalakit_test_projects@_external_shared@KalaAudio@release@KalaAudio1.lib
 action: forcecopy
 
 //
@@ -61,5 +61,5 @@ action: forcecopy
 
 //KalaHeaders
 origin: _external_shared@KalaHeaders
-target: ..@Elypso-engine@_external_shared@KalaHeaders, ..@kalakit_test_projects@_external_shared@KalaHeaders
+target: ..@elypso-engine@_external_shared@KalaHeaders, ..@kalakit_test_projects@_external_shared@KalaHeaders
 action: copy

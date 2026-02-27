@@ -8,22 +8,22 @@
 
 //copy readme
 origin: README.md
-target: ..@Elypso-engine@_external_shared@KalaAudio@README.md, ..@kalakit_test_projects@_external_shared@KalaAudio@README.md
+target: ..@elypso-engine@_external_shared@KalaAudio@README.md, ..@kalakit_test_projects@_external_shared@KalaAudio@README.md
 action: forcecopy
 
 //copy license
 origin: LICENSE.md
-target: ..@Elypso-engine@_external_shared@KalaAudio@LICENSE.md, ..@kalakit_test_projects@_external_shared@KalaAudio@LICENSE.md
+target: ..@elypso-engine@_external_shared@KalaAudio@LICENSE.md, ..@kalakit_test_projects@_external_shared@KalaAudio@LICENSE.md
 action: forcecopy
 
 //copy include files
 origin: include
-target: ..@Elypso-engine@_external_shared@KalaAudio@include, ..@kalakit_test_projects@_external_shared@KalaAudio@include
+target: ..@elypso-engine@_external_shared@KalaAudio@include, ..@kalakit_test_projects@_external_shared@KalaAudio@include
 action: forcecopy
 
 //copy docs
 origin: docs
-target: ..@Elypso-engine@_external_shared@KalaAudio@docs, ..@kalakit_test_projects@_external_shared@KalaAudio@docs
+target: ..@elypso-engine@_external_shared@KalaAudio@docs, ..@kalakit_test_projects@_external_shared@KalaAudio@docs
 action: forcecopy
 
 //
@@ -32,12 +32,12 @@ action: forcecopy
 
 //copy debug so
 origin: build@linux-debug@libKalaAudio1d.so
-target: ..@Elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.sol, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@libKalaAudio1d.so
+target: ..@elypso-engine@_external_shared@KalaAudio@debug@libKalaAudio1d.so, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@libKalaAudio1d.so
 action: forcecopy
 
 //copy release so
-origin: build@linux-releaselib@KalaAudio1.so
-target: ..@Elypso-engine@_external_shared@KalaAudio@release@KalaAudio1.so, ..@kalakit_test_projects@_external_shared@KalaAudio@release@libKalaAudio1.so
+origin: build@linux-release@libKalaAudio1.so
+target: ..@elypso-engine@_external_shared@KalaAudio@release@libKalaAudio1.so, ..@kalakit_test_projects@_external_shared@KalaAudio@release@libKalaAudio1.so
 action: forcecopy
 
 //
@@ -46,5 +46,5 @@ action: forcecopy
 
 //KalaHeaders
 origin: _external_shared@KalaHeaders
-target: ..@Elypso-engine@_external_shared@KalaHeaders, ..@kalakit_test_projects@_external_shared@KalaHeaders
+target: ..@elypso-engine@_external_shared@KalaHeaders, ..@kalakit_test_projects@_external_shared@KalaHeaders
 action: copy
