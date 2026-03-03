@@ -31,12 +31,12 @@ action: forcecopy
 //
 
 //copy debug so
-origin: build@linux-debug@libKalaAudio1d.so
+origin: build@debug-linux@libKalaAudio1d.so
 target: ..@elypso-engine@_external_shared@KalaAudio@debug@libKalaAudio1d.so, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@libKalaAudio1d.so
 action: forcecopy
 
 //copy release so
-origin: build@linux-release@libKalaAudio1.so
+origin: build@release-linux@libKalaAudio1.so
 target: ..@elypso-engine@_external_shared@KalaAudio@release@libKalaAudio1.so, ..@kalakit_test_projects@_external_shared@KalaAudio@release@libKalaAudio1.so
 action: forcecopy
 

@@ -31,27 +31,27 @@ action: forcecopy
 //
 
 //copy debug dll
-origin: build@windows-debug@KalaAudio1d.dll
+origin: build@debug-windows@KalaAudio1d.dll
 target: ..@elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.dll, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@KalaAudio1d.dll
 action: forcecopy
 
 //copy debug lib
-origin: build@windows-debug@KalaAudio1d.lib
+origin: build@debug-windows@KalaAudio1d.lib
 target: ..@elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.lib, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@KalaAudio1d.lib
 action: forcecopy
 
 //copy debug pdb
-origin: build@windows-debug@KalaAudio1d.pdb
+origin: build@debug-windows@KalaAudio1d.pdb
 target: ..@elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.pdb, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@KalaAudio1d.pdb
 action: forcecopy
 
 //copy release dll
-origin: build@windows-release@KalaAudio1.dll
+origin: build@release-windows@KalaAudio1.dll
 target: ..@elypso-engine@_external_shared@KalaAudio@release@KalaAudio1.dll, ..@kalakit_test_projects@_external_shared@KalaAudio@release@KalaAudio1.dll
 action: forcecopy
 
 //copy release lib
-origin: build@windows-release@KalaAudio1.lib
+origin: build@release-windows@KalaAudio1.lib
 target: ..@elypso-engine@_external_shared@KalaAudio@release@KalaAudio1.lib, ..@kalakit_test_projects@_external_shared@KalaAudio@release@KalaAudio1.lib
 action: forcecopy
 
