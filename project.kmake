@@ -21,7 +21,7 @@ buildpath: "build/debug-windows"
 #profile release-windows
 binaryname: KalaAudio1
 compiler: clang-cl
-buildtype: release
+buildtype: minsizerel
 buildpath: "build/release-windows"
 
 #profile debug-linux
@@ -33,5 +33,5 @@ buildpath: "build/debug-linux"
 #profile release-linux
 binaryname: libKalaAudio1
 compiler: clang++
-buildtype: release
+buildtype: minsizerel
 buildpath: "build/release-linux"
