@@ -10,7 +10,7 @@ dir_debug: build/debug-
 #global
 compilerlauncher: ccache
 standard: c++20
-binarytype: shared
+binarytype: static
 sources: "src"
 headers: "include", "_external_shared"
 warninglevel: normal
