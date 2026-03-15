@@ -31,13 +31,13 @@ action: forcecopy
 //
 
 //copy debug lib
-origin: build@debug-windows@KalaAudio1d.lib
-target: ..@elypso-engine@_external_shared@KalaAudio@debug@KalaAudio1d.lib, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@KalaAudio1d.lib
+origin: build@debug-windows@kalaaudiod.lib
+target: ..@elypso-engine@_external_shared@KalaAudio@debug@kalaaudiod.lib, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@kalaaudiod.lib
 action: forcecopy
 
 //copy release lib
-origin: build@release-windows@KalaAudio1.lib
-target: ..@elypso-engine@_external_shared@KalaAudio@release@KalaAudio1.lib, ..@kalakit_test_projects@_external_shared@KalaAudio@release@KalaAudio1.lib
+origin: build@release-windows@kalaaudio.lib
+target: ..@elypso-engine@_external_shared@KalaAudio@release@kalaaudio.lib, ..@kalakit_test_projects@_external_shared@KalaAudio@release@kalaaudio.lib
 action: forcecopy
 
 //

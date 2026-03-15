@@ -30,14 +30,14 @@ action: forcecopy
 // BINARIES
 //
 
-//copy debug so
-origin: build@debug-linux@libKalaAudio1d.so
-target: ..@elypso-engine@_external_shared@KalaAudio@debug@libKalaAudio1d.so, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@libKalaAudio1d.so
+//copy debug a
+origin: build@debug-linux@libkalaaudiod.a
+target: ..@elypso-engine@_external_shared@KalaAudio@debug@libkalaaudiod.a, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@libkalaaudiod.a
 action: forcecopy
 
-//copy release so
-origin: build@release-linux@libKalaAudio1.so
-target: ..@elypso-engine@_external_shared@KalaAudio@release@libKalaAudio1.so, ..@kalakit_test_projects@_external_shared@KalaAudio@release@libKalaAudio1.so
+//copy release a
+origin: build@release-linux@libkalaaudio.a
+target: ..@elypso-engine@_external_shared@KalaAudio@release@libkalaaudio.a, ..@kalakit_test_projects@_external_shared@KalaAudio@release@libkalaaudio.a
 action: forcecopy
 
 //

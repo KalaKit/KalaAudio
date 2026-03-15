@@ -70,8 +70,7 @@ static PlayerData* CommonChecker(
 
 static void CheckHugeValue(
 	f32 value,
-	const string& valueName,
-	bool originatesFromAudio = false);
+	const string& valueName);
 
 static void PrintErrorMessage(
 	const string& message,
@@ -217,9 +216,9 @@ namespace KalaAudio
 		if (!CheckInitState("set listener position", true)) return;
 
 #ifdef _DEBUG
-		CheckHugeValue(pos.x, "listener x position", true);
-		CheckHugeValue(pos.y, "listener y position", true);
-		CheckHugeValue(pos.z, "listener z position", true);
+		CheckHugeValue(pos.x, "listener x position");
+		CheckHugeValue(pos.y, "listener y position");
+		CheckHugeValue(pos.z, "listener z position");
 #endif
 
 		ma_engine_listener_set_position(
@@ -256,9 +255,9 @@ namespace KalaAudio
 		if (!CheckInitState("set listener up", true)) return;
 
 #ifdef _DEBUG
-		CheckHugeValue(up.x, "listener x up", true);
-		CheckHugeValue(up.y, "listener y up", true);
-		CheckHugeValue(up.z, "listener z up", true);
+		CheckHugeValue(up.x, "listener x up");
+		CheckHugeValue(up.y, "listener y up");
+		CheckHugeValue(up.z, "listener z up");
 #endif
 
 		ma_engine_listener_set_world_up(
@@ -400,10 +399,6 @@ namespace KalaAudio
 		AudioCone cone{};
 
 		if (!CheckInitState("get listener cone data", true)) return cone;
-
-		ma_vec3f front = ma_engine_listener_get_direction(
-			&engine,
-			0);
 
 		f32 innerConeAngle{};
 		f32 outerConeAngle{};
@@ -1521,8 +1516,7 @@ PlayerData* CommonChecker(
 
 void CheckHugeValue(
 	f32 value,
-	const string& valueName,
-	bool originatesFromAudio)
+	const string& valueName)
 {
 	if (value < -10000.0f
 		|| value > 10000.0f)
