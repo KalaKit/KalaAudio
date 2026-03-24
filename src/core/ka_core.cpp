@@ -9,7 +9,7 @@
 
 #include <string>
 
-#include "KalaHeaders/log_utils.hpp"
+#include "log_utils.hpp"
 
 #include "core/ka_core.hpp"
 #include "core/ka_audio.hpp"

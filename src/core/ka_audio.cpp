@@ -12,9 +12,9 @@
 #include <sstream>
 
 #define MINIAUDIO_IMPLEMENTATION
-#include "miniaudio/miniaudio.h"
+#include "miniaudio.h"
 
-#include "KalaHeaders/log_utils.hpp"
+#include "log_utils.hpp"
 
 #include "core/ka_core.hpp"
 #include "core/ka_audio.hpp"
@@ -406,7 +406,7 @@ namespace KalaAudio
 
 		ma_engine_listener_get_cone(
 			&engine,
-			0,
+			ID,
 			&innerConeAngle,
 			&outerConeAngle,
 			&outerGain);
