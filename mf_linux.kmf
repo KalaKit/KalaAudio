@@ -8,43 +8,34 @@
 
 //copy readme
 origin: README.md
-target: ..@elypso-engine@_external_shared@KalaAudio@README.md, ..@kalakit_test_projects@_external_shared@KalaAudio@README.md
+target: ..@external-shared@KalaAudio@README.md
 action: forcecopy
 
 //copy license
 origin: LICENSE.md
-target: ..@elypso-engine@_external_shared@KalaAudio@LICENSE.md, ..@kalakit_test_projects@_external_shared@KalaAudio@LICENSE.md
+target: ..@external-shared@KalaAudio@LICENSE.md
 action: forcecopy
 
 //copy include files
 origin: include
-target: ..@elypso-engine@_external_shared@KalaAudio@include, ..@kalakit_test_projects@_external_shared@KalaAudio@include
+target: ..@external-shared@KalaAudio@include
 action: forcecopy
 
 //copy docs
 origin: docs
-target: ..@elypso-engine@_external_shared@KalaAudio@docs, ..@kalakit_test_projects@_external_shared@KalaAudio@docs
+target: ..@external-shared@KalaAudio@docs
 action: forcecopy
 
 //
 // BINARIES
 //
 
-//copy debug a
+//copy debug
 origin: build@debug-linux@libkalaaudiod.a
-target: ..@elypso-engine@_external_shared@KalaAudio@debug@libkalaaudiod.a, ..@kalakit_test_projects@_external_shared@KalaAudio@debug@libkalaaudiod.a
+target: ..@external-shared@KalaAudio@debug@libkalaaudiod.a
 action: forcecopy
 
-//copy release a
+//copy release
 origin: build@release-linux@libkalaaudio.a
-target: ..@elypso-engine@_external_shared@KalaAudio@release@libkalaaudio.a, ..@kalakit_test_projects@_external_shared@KalaAudio@release@libkalaaudio.a
+target: ..@external-shared@KalaAudio@release@libkalaaudio.a
 action: forcecopy
-
-//
-// EXTERNAL LIBRARIES
-//
-
-//KalaHeaders
-origin: _external_shared@KalaHeaders
-target: ..@elypso-engine@_external_shared@KalaHeaders, ..@kalakit_test_projects@_external_shared@KalaHeaders
-action: copy
