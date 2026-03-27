@@ -31,11 +31,11 @@ action: forcecopy
 //
 
 //copy debug
-origin: build@debug-linux@kalaaudiod.lib
+origin: build@debug-windows@kalaaudiod.lib
 target: ..@external-shared@KalaAudio@debug@kalaaudiod.lib
 action: forcecopy
 
 //copy release
-origin: build@release-linux@kalaaudio.lib
+origin: build@release-windows@kalaaudio.lib
 target: ..@external-shared@KalaAudio@release@kalaaudio.lib
 action: forcecopy
