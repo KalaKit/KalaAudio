@@ -16,12 +16,12 @@ case "$1" in
         LIB_EXT=a
         LIB_ORIGIN=build/release-linux
         ;;
-    --win-on-linux)
-        OUT_NAME=KalaAudio-Win-on-Linux
+    --windows-gnu)
+        OUT_NAME=KalaAudio-Windows-Gnu
 
         LIB_NAME=kalaaudio-gnu
         LIB_EXT=lib
-        LIB_ORIGIN=build/release-win-on-linux
+        LIB_ORIGIN=build/release-windows-gnu
         ;;
     --windows)
         OUT_NAME=KalaAudio-Windows
@@ -31,7 +31,7 @@ case "$1" in
         LIB_ORIGIN=build/release-windows
         ;;
     *)
-        echo "Error: Argument must be --linux, --win-on-linux or --windows" >&2
+        echo "Error: Argument must be --linux, --windows-gnu or --windows" >&2
         exit 1
         ;;
 esac
@@ -96,7 +96,7 @@ case "$1" in
     --linux)
         mf --f "${IN_MA}/release/libminiaudio.a" --t "${OUT_DIR}/${OUT_MA_NAME}/libminiaudio.a"
         ;;
-    --win-on-linux)
+    --windows-gnu)
         mf --f "${IN_MA}/release/miniaudio-gnu.lib" --t "${OUT_DIR}/${OUT_MA_NAME}/miniaudio-gnu.lib"
         ;;
     --windows)
