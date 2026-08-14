@@ -26,6 +26,7 @@ namespace KalaAudio
 	using std::filesystem::path;
 	using std::filesystem::is_regular_file;
 	using std::clamp;
+	using std::default_delete;
 
 	using KalaHeaders::KalaMath::vec3;
 
@@ -92,10 +93,10 @@ namespace KalaAudio
 			SampleRate sampleRate = SampleRate::SAMPLE_DEFAULT);
 		static bool IsInitialized();
 
+		static u32 GetStreamThreshold();
 		//Set threshold where audio files will be streamed instead of loaded to memory in full.
 		//Only affects newly imported audio files.
 		static void SetStreamThreshold(u32 newThreshold);
-		static u32 GetStreamThreshold();
 
 		//Shut down Miniaudio
 		static void Shutdown();
@@ -108,43 +109,43 @@ namespace KalaAudio
 	class LIB_API AudioListener
 	{
 	public:
+		static bool IsMuted(u32 ID = 0);
 		//Set audio listener mute state
 		static void SetMuteState(
 			bool state,
 			u32 ID = 0);
-		static bool IsMuted(u32 ID = 0);
 
+		static vec3 GetWorldUp(u32 ID = 0);
 		//Set audio listener up direction
 		static void SetWorldUp(
 			const vec3& up,
 			u32 ID = 0);
-		static vec3 GetWorldUp(u32 ID = 0);
 
+		static vec3 GetPosition(u32 ID = 0);
 		//Set audio listener position
 		static void SetPosition(
 			const vec3& pos,
 			u32 ID = 0);
-		static vec3 GetPosition(u32 ID = 0);
 
+		static vec3 GetVelocity(u32 ID = 0);
 		//Set audio listener velocity
 		static void SetVelocity(
 			const vec3& vel,
 			u32 ID = 0);
-		static vec3 GetVelocity(u32 ID = 0);
 
+		static vec3 GetDirection(u32 ID = 0);
 		//Set audio listener direction
 		static void SetDirection(
 			const vec3& pos,
 			u32 ID = 0);
-		static vec3 GetDirection(u32 ID = 0);
 
+		static AudioCone GetConeData(u32 ID = 0);
 		//Set audio listener cone values.
 		//Inner cone angle and outer cone angle are internally clamped from 0.0f to 359.99f.
 		//Outer gain is internally clamped from 0.0f to 1.0f;
 		static void SetConeData(
 			const AudioCone& cone,
 			u32 ID = 0);
-		static AudioCone GetConeData(u32 ID = 0);
 	};
 
 	//
@@ -153,6 +154,7 @@ namespace KalaAudio
 
 	class LIB_API AudioPlayer
 	{
+	friend class default_delete<AudioPlayer>;
 	public:
 		static KalaAudioRegistry<AudioPlayer>& GetRegistry();
 
@@ -170,114 +172,114 @@ namespace KalaAudio
 
 		u32 GetID() const;
 
-		//Start playing this audio player from the start
-		void Play() const;
 		bool IsPlaying() const;
+		void Play() const;
 
-		//Set the playback position of this audio player in seconds from the start
-		void SetPlaybackPosition(u32 newValue) const;
 		//Get either length played or total audio player length in seconds
 		u32 GetPlaybackPosition(bool getFullDuration) const;
+		//Set the playback position of this audio player in seconds from the start
+		void SetPlaybackPosition(u32 newValue) const;
 
+		bool IsPaused() const;
 		//Pause this playing audio player
 		void Pause() const;
 		//Continue playing this paused audio player
 		void Continue() const;
-		bool IsPaused() const;
 
+		bool CanLoop() const;
 		//Set the loop state of this audio player. If true, then this audio player
 		//starts again from the beginning after it finishes playing.
 		void SetLoopState(bool newState) const;
-		bool CanLoop() const;
 
-		//Stop this playing audio player. If loop is enabled then this audio player starts playing again from the beginning.
-		void Stop() const;
 		//Returns true if this audio player is not playing and is not paused
 		bool HasFinished() const;
+		//Stop this playing audio player. If loop is enabled then this audio player starts playing again from the beginning.
+		void Stop() const;
 
+		f32 GetVolume() const;
 		//Set the volume of this audio player.
 		//Clamped internally from 0.0f to 5.0f, but recommended up to 1.0
 		void SetVolume(f32 newVolume) const;
-		f32 GetVolume() const;
 
+		bool GetSpatializationState() const;
 		//Toggle whether this sound is affected by spatial audio effects or not
 		void SetSpatializationState(bool newState) const;
-		bool GetSpatializationState() const;
 
+		Positioning GetPositioningState() const;
 		//Controls how a sound's position is interpreted when spatialization is enabled
 		void SetPositioningState(Positioning pos) const;
-		Positioning GetPositioningState() const;
 
+		f32 GetPitch() const;
 		//Set the pitch of this audio player.
 		//Clamped internally from 0.0f to 5.0f, but recommended up to 1.0
 		void SetPitch(f32 newPitch) const;
-		f32 GetPitch() const;
 
+		PanMode GetPanMode() const;
 		//Controls how left/right panning is interpreted via SetPan
 		void SetPanMode(PanMode panMode) const;
-		PanMode GetPanMode() const;
 
+		f32 GetPan() const;
 		//Balance audio between left and right speakers.
 		//Clamped internally from -1.0f to 1.0f
 		void SetPan(f32 pan) const;
-		f32 GetPan() const;
 
+		vec3 GetPosition() const;
 		//Set audio playback position
 		void SetPosition(const vec3& pos) const;
-		vec3 GetPosition() const;
 
+		vec3 GetVelocity() const;
 		//Set audio playback velocity
 		void SetVelocity(const vec3& vel) const;
-		vec3 GetVelocity() const;
 
+		vec3 GetDirection() const;
 		//Set audio player direction
 		void SetDirection(const vec3& pos) const;
-		vec3 GetDirection() const;
 
+		AudioCone GetConeData() const;
 		//Set audio player cone values.
 		//Inner cone angle and outer cone angle are internally clamped from 0.0f to 359.99f.
 		//Outer gain is internally clamped from 0.0f to 1.0f;
 		void SetConeData(const AudioCone& cone) const;
-		AudioCone GetConeData() const;
 
+		AttenuationModel GetAttenuationModel() const;
 		//The formula or curve shape used to reduce volume over distance
 		void SetAttenuationModel(AttenuationModel model) const;
-		AttenuationModel GetAttenuationModel() const;
 
+		f32 GetRolloff() const;
 		//Scaling multiplier applied on top of the attenuation model.
 		//Controls how aggressively the chosen attenuation curve reduces volume.
 		//Clamped internally from 0.0f to 5.0f, but recommended up to 1.0
 		void SetRolloff(f32 newRolloffFactor) const;
-		f32 GetRolloff() const;
 
+		f32 GetDopplerFactor() const;
 		//Scales how dramatic the Doppler effect is when either listener or source is moving.
 		//Clamped internally from 0.0f to 5.0f, but recommended up to 1.0
 		void SetDopplerFactor(f32 factor) const;
-		f32 GetDopplerFactor() const;
 
+		f32 GetMinGain() const;
 		//Set the minimum final volume that this audio player can drop to, 
 		//even after attenuation. Clamped internally from 0.0f to MaxGain - 0.1f
 		void SetMinGain(f32 newMinGain) const;
-		f32 GetMinGain() const;
 
+		f32 GetMaxGain() const;
 		//Set the maximum final volume that this audio player can rise to, 
 		//even after boosts. Clamped internally from MinGain + 0.1f to 5.0f, but recommended up to 1.0
 		void SetMaxGain(f32 newMaxGain) const;
-		f32 GetMaxGain() const;
 
+		f32 GetMinRange() const;
 		//Set the minimum distance at which this audio player is heard at full volume.
 		//Clamped internally from 0.0f to MaxRange - 0.1f
 		void SetMinRange(f32 newMinRange) const;
-		f32 GetMinRange() const;
 
+		f32 GetMaxRange() const;
 		//Set the maximum distance at which this audio player can be heard before it is silent.
 		//Clamped internally from MinRange + 0.1f to 1000.0f
 		void SetMaxRange(f32 newMaxRange) const;
-		f32 GetMaxRange() const;
 
-		//Do not destroy manually, erase from registry instead
-		~AudioPlayer();
+		void Destroy();
 	private:
+		~AudioPlayer();
+
 		string name{};
 		string filePath{};
 
