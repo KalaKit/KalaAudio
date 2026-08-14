@@ -154,7 +154,7 @@ namespace KalaAudio
 
 	class LIB_API AudioPlayer
 	{
-	friend class default_delete<AudioPlayer>;
+	friend struct default_delete<AudioPlayer>;
 	public:
 		static KalaAudioRegistry<AudioPlayer>& GetRegistry();
 
