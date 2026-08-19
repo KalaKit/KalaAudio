@@ -3,27 +3,20 @@
 //This is free software, and you are welcome to redistribute it under certain conditions.
 //Read LICENSE.md for more information.
 
-#ifdef __linux__
 #include <csignal>
-#endif
-
-#include <string>
 
 #include "log_utils.hpp"
 
 #include "core/ka_core.hpp"
-#include "core/ka_audio.hpp"
 
 using KalaHeaders::KalaLog::Log;
 using KalaHeaders::KalaLog::LogType;
 using KalaHeaders::KalaLog::TimeFormat;
 using KalaHeaders::KalaLog::DateFormat;
 
-#ifdef __linux__
+#if defined(KLIN_ANY)
 using std::raise;
 #endif
-
-using std::to_string;
 
 namespace KalaAudio::Core
 {
@@ -32,26 +25,6 @@ namespace KalaAudio::Core
 
 	void KalaAudioCore::SetGlobalID(u32 newID) { globalID = newID; }
 	u32 KalaAudioCore::GetGlobalID() { return globalID; }
-
-	void KalaAudioCore::CleanAllWindowResources(u32 windowID)
-	{
-		Log::Print(
-			"Cleaning resources for window '" + to_string(windowID) + "'.",
-			"KALAAUDIO",
-			LogType::LOG_INFO);
-	}
-	
-	void KalaAudioCore::CleanAllResources()
-	{
-		Log::Print(
-			"Cleaning all KalaAudio resources.",
-			"KALAAUDIO",
-			LogType::LOG_INFO);
-			
-		if (Audio::IsInitialized()) Audio::Shutdown();
-		
-		AudioPlayer::GetRegistry().RemoveAllContent();
-	}
 
 	void KalaAudioCore::ForceClose(
 		const string& target,
@@ -72,7 +45,7 @@ namespace KalaAudio::Core
 			TimeFormat::TIME_NONE,
 			DateFormat::DATE_NONE);
 
-#ifdef _WIN32
+#if defined(KWIN_ANY)
 		__debugbreak();
 #else
 		raise(SIGTRAP);

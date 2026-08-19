@@ -13,19 +13,11 @@ namespace KalaAudio::Core
 {
 	using std::string;
 	
-	using u32 = uint32_t;
-	
 	class LIB_API KalaAudioCore
 	{
 	public:
 		static void SetGlobalID(u32 newID);
 		static u32 GetGlobalID();
-		
-		//Run when you want all KalaAudio resources freed relative to a window ID
-		static void CleanAllWindowResources(u32 windowID);
-		
-		//Run when you want all KalaAudio resources to be freed
-		static void CleanAllResources();
 		
 		//Force-close the program right this very moment with no cleanups
 		static void ForceClose(
