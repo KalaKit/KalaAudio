@@ -23,7 +23,7 @@ using KalaHeaders::KalaMath::wrap;
 using KalaHeaders::KalaLog::Log;
 using KalaHeaders::KalaLog::LogType;
 
-using KalaAudio::Audio;
+using KalaAudio::Core::Audio;
 using KalaAudio::Core::KalaAudioCore;
 
 using std::unordered_map;
@@ -121,7 +121,7 @@ static bool CheckListenerCount(
 	return true;
 }
 
-namespace KalaAudio
+namespace KalaAudio::Core
 {
 	//
 	// AUDIO CORE
@@ -133,8 +133,8 @@ namespace KalaAudio
 	//default is 5MB
 	static inline u32 streamThreshold = 5242880u;
 
-	void Audio::SetVerboseLoggingState(bool newState) { isVerboseLoggingEnabled = newState; }
 	bool Audio::IsVerboseLoggingEnabled() { return isVerboseLoggingEnabled; }
+	void Audio::SetVerboseLoggingState(bool newState) { isVerboseLoggingEnabled = newState; }
 
 	bool Audio::Initialize(
 		u32 listeners,
@@ -725,7 +725,13 @@ namespace KalaAudio
 		trackPtr->filePath = filePath;
 		trackPtr->ID = newID;
 
-		registry.AddContent(newID, std::move(newTrack));
+		string err = registry.AddContent(newID, std::move(newTrack));
+		if (!err.empty())
+		{
+			KalaAudioCore::ForceClose(
+				"KalaAudio audio error",
+				"Failed to initialize audio player! Reason: " + err);
+		}
 
 		Log::Print(
 			"Created audio file '" + name + "' with ID '" + to_string(newID) + "'!",
@@ -735,6 +741,7 @@ namespace KalaAudio
 		return trackPtr;
 	}
 
+	const string& AudioPlayer::GetName() const { return name; }
 	void AudioPlayer::SetName(const string& newName)
 	{
 		PlayerData* pData = GetPlayerData(
@@ -783,7 +790,6 @@ namespace KalaAudio
 				LogType::LOG_INFO);
 		}
 	}
-	const string& AudioPlayer::GetName() const { return name; }
 
 	const string& AudioPlayer::GetPath() const { return filePath; }
 
@@ -1614,7 +1620,16 @@ namespace KalaAudio
 		}
 	}
 
-	void AudioPlayer::Destroy() { registry.RemoveContent(ID); }
+	void AudioPlayer::Destroy()
+	{ 
+		string err = registry.DestroyContent(ID);
+		if (!err.empty())
+		{
+			KalaAudioCore::ForceClose(
+				"KalaAudio audio error",
+				"Failed to destroy audio player '" + to_string(ID) + "'! Reason: " + err);
+		}
+	}
 
 	AudioPlayer::~AudioPlayer()
 	{

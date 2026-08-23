@@ -16,10 +16,12 @@ namespace KalaAudio::Core
 	class LIB_API KalaAudioCore
 	{
 	public:
-		static void SetGlobalID(u32 newID);
+		KNODISCARD
 		static u32 GetGlobalID();
+		static void SetGlobalID(u32 newID);
 		
 		//Force-close the program right this very moment with no cleanups
+		KNORETURN
 		static void ForceClose(
 			const string& target,
 			const string& reason);

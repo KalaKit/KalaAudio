@@ -23,8 +23,8 @@ namespace KalaAudio::Core
 	//The ID that is bumped by every object when it needs a new ID
 	static u32 globalID{};
 
-	void KalaAudioCore::SetGlobalID(u32 newID) { globalID = newID; }
 	u32 KalaAudioCore::GetGlobalID() { return globalID; }
+	void KalaAudioCore::SetGlobalID(u32 newID) { globalID = newID; }
 
 	void KalaAudioCore::ForceClose(
 		const string& target,
@@ -50,5 +50,7 @@ namespace KalaAudio::Core
 #else
 		raise(SIGTRAP);
 #endif
+
+		_Exit(1);
 	}
 }

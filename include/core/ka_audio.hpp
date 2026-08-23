@@ -19,7 +19,7 @@ static constexpr u32 MIN_STREAM_SIZE = 1048576u;
 //max is 20MB
 static constexpr u32 MAX_STREAM_SIZE = 20971520u;
 
-namespace KalaAudio
+namespace KalaAudio::Core
 {
 	using std::string;
 	using std::filesystem::exists;
@@ -81,18 +81,22 @@ namespace KalaAudio
 	class LIB_API Audio
 	{
 	public:
+		KNODISCARD
+		static bool IsVerboseLoggingEnabled();
 		//Toggle verbose logging. If true, then usually frequently updated runtime values like
 		//SetPlayerPosition, SetListenerPosition will dump their debug logs into the console.
 		static void SetVerboseLoggingState(bool newState);
-		static bool IsVerboseLoggingEnabled();
 
 		//Initialize Miniaudio.
 		//Listener count is internally clamped from 1 to 4.
+		KNODISCARD
 		static bool Initialize(
 			u32 listeners = 1,
 			SampleRate sampleRate = SampleRate::SAMPLE_DEFAULT);
+		KNODISCARD
 		static bool IsInitialized();
 
+		KNODISCARD
 		static u32 GetStreamThreshold();
 		//Set threshold where audio files will be streamed instead of loaded to memory in full.
 		//Only affects newly imported audio files.
@@ -109,36 +113,42 @@ namespace KalaAudio
 	class LIB_API AudioListener
 	{
 	public:
+		KNODISCARD
 		static bool IsMuted(u32 ID = 0);
 		//Set audio listener mute state
 		static void SetMuteState(
 			bool state,
 			u32 ID = 0);
 
+		KNODISCARD
 		static vec3 GetWorldUp(u32 ID = 0);
 		//Set audio listener up direction
 		static void SetWorldUp(
 			const vec3& up,
 			u32 ID = 0);
 
+		KNODISCARD
 		static vec3 GetPosition(u32 ID = 0);
 		//Set audio listener position
 		static void SetPosition(
 			const vec3& pos,
 			u32 ID = 0);
 
+		KNODISCARD
 		static vec3 GetVelocity(u32 ID = 0);
 		//Set audio listener velocity
 		static void SetVelocity(
 			const vec3& vel,
 			u32 ID = 0);
 
+		KNODISCARD
 		static vec3 GetDirection(u32 ID = 0);
 		//Set audio listener direction
 		static void SetDirection(
 			const vec3& pos,
 			u32 ID = 0);
 
+		KNODISCARD
 		static AudioCone GetConeData(u32 ID = 0);
 		//Set audio listener cone values.
 		//Inner cone angle and outer cone angle are internally clamped from 0.0f to 359.99f.
@@ -156,42 +166,52 @@ namespace KalaAudio
 	{
 	friend struct default_delete<AudioPlayer>;
 	public:
+		KNODISCARD
 		static KalaAudioRegistry<AudioPlayer>& GetRegistry();
 
 		//Create a new audio player. If file size is less than or equal to 10MB
 		//then file is loaded into memory in full, otherwise it is streamed.
+		KNODISCARD
 		static AudioPlayer* CreateAudioPlayer(
 			const string& name,
 			const string& filePath);
 
+		KNODISCARD
+		const string& GetName() const;
 		//Assign a new name to this audio player
 		void SetName(const string& newName);
-		const string& GetName() const;
 
+		KNODISCARD
 		const string& GetPath() const;
 
+		KNODISCARD
 		u32 GetID() const;
 
+		KNODISCARD
 		bool IsPlaying() const;
 		void Play() const;
 
 		//Get either length played or total audio player length in seconds
+		KNODISCARD
 		u32 GetPlaybackPosition(bool getFullDuration) const;
 		//Set the playback position of this audio player in seconds from the start
 		void SetPlaybackPosition(u32 newValue) const;
 
+		KNODISCARD
 		bool IsPaused() const;
 		//Pause this playing audio player
 		void Pause() const;
 		//Continue playing this paused audio player
 		void Continue() const;
 
+		KNODISCARD
 		bool CanLoop() const;
 		//Set the loop state of this audio player. If true, then this audio player
 		//starts again from the beginning after it finishes playing.
 		void SetLoopState(bool newState) const;
 
 		//Returns true if this audio player is not playing and is not paused
+		KNODISCARD
 		bool HasFinished() const;
 		//Stop this playing audio player. If loop is enabled then this audio player starts playing again from the beginning.
 		void Stop() const;
@@ -201,76 +221,92 @@ namespace KalaAudio
 		//Clamped internally from 0.0f to 5.0f, but recommended up to 1.0
 		void SetVolume(f32 newVolume) const;
 
+		KNODISCARD
 		bool GetSpatializationState() const;
 		//Toggle whether this sound is affected by spatial audio effects or not
 		void SetSpatializationState(bool newState) const;
 
+		KNODISCARD
 		Positioning GetPositioningState() const;
 		//Controls how a sound's position is interpreted when spatialization is enabled
 		void SetPositioningState(Positioning pos) const;
 
+		KNODISCARD
 		f32 GetPitch() const;
 		//Set the pitch of this audio player.
 		//Clamped internally from 0.0f to 5.0f, but recommended up to 1.0
 		void SetPitch(f32 newPitch) const;
 
+		KNODISCARD
 		PanMode GetPanMode() const;
 		//Controls how left/right panning is interpreted via SetPan
 		void SetPanMode(PanMode panMode) const;
 
+		KNODISCARD
 		f32 GetPan() const;
 		//Balance audio between left and right speakers.
 		//Clamped internally from -1.0f to 1.0f
 		void SetPan(f32 pan) const;
 
+		KNODISCARD
 		vec3 GetPosition() const;
 		//Set audio playback position
 		void SetPosition(const vec3& pos) const;
 
+		KNODISCARD
 		vec3 GetVelocity() const;
 		//Set audio playback velocity
 		void SetVelocity(const vec3& vel) const;
 
+		KNODISCARD
 		vec3 GetDirection() const;
 		//Set audio player direction
 		void SetDirection(const vec3& pos) const;
 
+		KNODISCARD
 		AudioCone GetConeData() const;
 		//Set audio player cone values.
 		//Inner cone angle and outer cone angle are internally clamped from 0.0f to 359.99f.
 		//Outer gain is internally clamped from 0.0f to 1.0f;
 		void SetConeData(const AudioCone& cone) const;
 
+		KNODISCARD
 		AttenuationModel GetAttenuationModel() const;
 		//The formula or curve shape used to reduce volume over distance
 		void SetAttenuationModel(AttenuationModel model) const;
 
+		KNODISCARD
 		f32 GetRolloff() const;
 		//Scaling multiplier applied on top of the attenuation model.
 		//Controls how aggressively the chosen attenuation curve reduces volume.
 		//Clamped internally from 0.0f to 5.0f, but recommended up to 1.0
 		void SetRolloff(f32 newRolloffFactor) const;
 
+		KNODISCARD
 		f32 GetDopplerFactor() const;
 		//Scales how dramatic the Doppler effect is when either listener or source is moving.
 		//Clamped internally from 0.0f to 5.0f, but recommended up to 1.0
 		void SetDopplerFactor(f32 factor) const;
 
+		KNODISCARD
 		f32 GetMinGain() const;
 		//Set the minimum final volume that this audio player can drop to, 
 		//even after attenuation. Clamped internally from 0.0f to MaxGain - 0.1f
 		void SetMinGain(f32 newMinGain) const;
 
+		KNODISCARD
 		f32 GetMaxGain() const;
 		//Set the maximum final volume that this audio player can rise to, 
 		//even after boosts. Clamped internally from MinGain + 0.1f to 5.0f, but recommended up to 1.0
 		void SetMaxGain(f32 newMaxGain) const;
 
+		KNODISCARD
 		f32 GetMinRange() const;
 		//Set the minimum distance at which this audio player is heard at full volume.
 		//Clamped internally from 0.0f to MaxRange - 0.1f
 		void SetMinRange(f32 newMinRange) const;
 
+		KNODISCARD
 		f32 GetMaxRange() const;
 		//Set the maximum distance at which this audio player can be heard before it is silent.
 		//Clamped internally from MinRange + 0.1f to 1000.0f
