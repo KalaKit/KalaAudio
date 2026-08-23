@@ -1,3 +1,7 @@
+# 1.2.0
+
+- registry overhaul
+
 # 1.1.0
 
 - uses newer registry that KalaWindow and others use
