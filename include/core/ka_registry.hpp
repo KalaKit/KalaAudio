@@ -33,15 +33,15 @@ namespace KalaAudio::Core
 	template<typename T>
 	concept HasGetID = requires(const T& t) { { t.GetID() } -> same_as<u32>; };
 
-	template<typename T>
-	concept HasGetWindowID = requires(const T& t) { { t.GetWindowID() } -> same_as<u32>; };
-
 	//Stores unique_ptrs and non-owning pointers of class T for ID-based lookups,
 	//should always be stored as 'static inline KalaAudioRegistry<T> registry'
 	template<typename T>
 		requires is_class_v<T>
 	struct LIB_API KalaAudioRegistry
 	{
+	friend class AudioListener;
+	friend class AudioPlayer;
+	public:
 		//Get a runtime iteration safe list of all
 		//created object pointers of this registry
 		KNODISCARD
@@ -76,7 +76,7 @@ namespace KalaAudio::Core
 
 			return "";
 		}
-
+	private:
 		//Add a new unique ptr and its ID, returns error string on failure
 		KNODISCARD
 		static inline string AddContent(
@@ -174,7 +174,7 @@ namespace KalaAudio::Core
 			runtimeContent.clear();
 			createdContent.clear();
 		}
-	private:
+
 		static inline unordered_map<u32, unique_ptr<T>> createdContent{};
 		static inline vector<T*> runtimeContent{};
 	};
