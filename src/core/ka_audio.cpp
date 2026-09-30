@@ -11,7 +11,6 @@
 #include <filesystem>
 #include <sstream>
 
-#define MINIAUDIO_IMPLEMENTATION
 #include "miniaudio.h"
 
 #include "log_utils.hpp"
