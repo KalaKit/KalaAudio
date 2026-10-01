@@ -32,12 +32,25 @@ mf --f "${KH_ORIGIN}/LICENSE.md" --t "${KH_TARGET}/LICENSE.md"
 
 mf --f "${KH_ORIGIN}/include" --t "${KH_TARGET}"
 
-# MiniAudio
+# Miniaudio
 mkdir "${MA_TARGET}"
 
-mf --f "${MA_ORIGIN}/LICENSE" --t "${MA_TARGET}/LICENSE"
+if [ -d "${MA_ORIGIN}/release-windows" ]; then
+    mf --f "${MA_ORIGIN}/release-windows" --t "${MA_TARGET}"
+fi
+if [ -d "${MA_ORIGIN}/release-windows-gnu" ]; then
+    mf --f "${MA_ORIGIN}/release-windows-gnu" --t "${MA_TARGET}"
+fi
+if [ -d "${MA_ORIGIN}/release-linux" ]; then
+    mf --f "${MA_ORIGIN}/release-linux" --t "${MA_TARGET}"
+fi
 
-mf --f "${MA_ORIGIN}/include" --t "${MA_TARGET}"
-
-mf --f "${MA_ORIGIN}/release" --t "${MA_TARGET}"
-mf --f "${MA_ORIGIN}/debug" --t "${MA_TARGET}"
+if [ -d "${MA_ORIGIN}/debug-windows" ]; then
+    mf --f "${MA_ORIGIN}/debug-windows" --t "${MA_TARGET}"
+fi
+if [ -d "${MA_ORIGIN}/debug-windows-gnu" ]; then
+    mf --f "${MA_ORIGIN}/debug-windows-gnu" --t "${MA_TARGET}"
+fi
+if [ -d "${MA_ORIGIN}/debug-linux" ]; then
+    mf --f "${MA_ORIGIN}/debug-linux" --t "${MA_TARGET}"
+fi

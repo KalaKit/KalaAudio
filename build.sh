@@ -39,6 +39,9 @@ case "$1" in
 
         TARGET_REL_DIR=${BUILD_DIR}/${VERSION}/release-linux
         TARGET_DEB_DIR=${BUILD_DIR}/${VERSION}/debug-linux
+
+        SOURCE_MA_REL_DIR=${MA_DIR}/release-linux
+        SOURCE_MA_DEB_DIR=${MA_DIR}/debug-linux
         ;;
     --windows-gnu)
         BIN_NAME_FRONT=
@@ -53,6 +56,9 @@ case "$1" in
 
         TARGET_REL_DIR=${BUILD_DIR}/${VERSION}/release-windows-gnu
         TARGET_DEB_DIR=${BUILD_DIR}/${VERSION}/debug-windows-gnu
+
+        SOURCE_MA_REL_DIR=${MA_DIR}/release-windows-gnu
+        SOURCE_MA_DEB_DIR=${MA_DIR}/debug-windows-gnu
         ;;
     --windows)
         BIN_NAME_FRONT=
@@ -67,6 +73,9 @@ case "$1" in
 
         TARGET_REL_DIR=${BUILD_DIR}/${VERSION}/release-windows
         TARGET_DEB_DIR=${BUILD_DIR}/${VERSION}/debug-windows
+
+        SOURCE_MA_REL_DIR=${MA_DIR}/release-windows
+        SOURCE_MA_DEB_DIR=${MA_DIR}/debug-windows
         ;;
     *)
         echo "Error: Argument must be --linux, --windows-gnu or --windows" >&2
@@ -132,7 +141,19 @@ mf --o --f "docs" --t "${TARGET_REL_DIR}"
 
 mf --o --f "${KH_DIR}" --t "${TARGET_REL_DIR}"
 
-mf --o --f "${MA_DIR}" --t "${TARGET_REL_DIR}"
+if [ "$2" = "--export" ]; then
+    if [ -d "${TARGET_REL_DIR}/miniaudio" ]; then
+        rm -rf "${TARGET_REL_DIR}/miniaudio"
+    fi
+
+    mkdir "${TARGET_REL_DIR}/miniaudio"
+    cp -R "${SOURCE_MA_REL_DIR}/." "${TARGET_REL_DIR}/miniaudio/"
+else
+    if [ ! -d "${TARGET_REL_DIR}/miniaudio" ]; then
+        mkdir "${TARGET_REL_DIR}/miniaudio"
+        cp -R "${SOURCE_MA_REL_DIR}/." "${TARGET_REL_DIR}/miniaudio/"
+    fi
+fi
 
 # Debug
 
@@ -159,7 +180,10 @@ else
 
     mf --o --f "${KH_DIR}" --t "${TARGET_DEB_DIR}"
 
-    mf --o --f "${MA_DIR}" --t "${TARGET_DEB_DIR}"
+    if [ ! -d "${TARGET_DEB_DIR}/miniaudio" ]; then
+        mkdir "${TARGET_DEB_DIR}/miniaudio"
+        cp -R "${SOURCE_MA_DEB_DIR}/." "${TARGET_DEB_DIR}/miniaudio/"
+    fi
 fi
 
 #

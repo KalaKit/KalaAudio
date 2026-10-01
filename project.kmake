@@ -6,6 +6,9 @@
 name_bin: kalaaudio
 dir_release: build/temp/release-
 dir_debug: build/temp/debug-
+name_ma: miniaudio
+dir_ma_rel: external/miniaudio/release-
+dir_ma_deb: external/miniaudio/debug-
 
 #global
 compilerlauncher: ccache
@@ -13,7 +16,7 @@ compiler: clang++
 standard: c++20
 binarytype: static
 sources: "src"
-headers: "include", "external/kalaheaders/include", "external/miniaudio/include"
+headers: "include", "external/kalaheaders/include"
 defines: LIB_STATIC
 warninglevel: normal
 customflags: export-compile-commands, export-vscode-sln
@@ -22,30 +25,36 @@ customflags: export-compile-commands, export-vscode-sln
 binaryname: ${name_bin}d
 buildtype: debug
 buildpath: "${dir_debug}windows"
+headers: "${dir_ma_deb}windows/include"
 
 #profile release-windows
 binaryname: ${name_bin}
 buildtype: minsizerel
 buildpath: "${dir_release}windows"
+headers: "${dir_ma_rel}windows/include"
 
 #profile debug-windows-gnu
 targettype: windows-gnu
 binaryname: ${name_bin}-gnud
 buildtype: debug
 buildpath: "${dir_debug}windows-gnu"
+headers: "${dir_ma_deb}windows-gnu/include"
 
 #profile release-windows-gnu
 targettype: windows-gnu
 binaryname: ${name_bin}-gnu
 buildtype: minsizerel
 buildpath: "${dir_release}windows-gnu"
+headers: "${dir_ma_rel}windows-gnu/include"
 
 #profile debug-linux
 binaryname: lib${name_bin}d
 buildtype: debug
 buildpath: "${dir_debug}linux"
+headers: "${dir_ma_deb}linux/include"
 
 #profile release-linux
 binaryname: lib${name_bin}
 buildtype: minsizerel
 buildpath: "${dir_release}linux"
+headers: "${dir_ma_rel}linux/include"
