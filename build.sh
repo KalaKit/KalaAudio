@@ -141,18 +141,9 @@ mf --o --f "docs" --t "${TARGET_REL_DIR}"
 
 mf --o --f "${KH_DIR}" --t "${TARGET_REL_DIR}"
 
-if [ "$2" = "--export" ]; then
-    if [ -d "${TARGET_REL_DIR}/miniaudio" ]; then
-        rm -rf "${TARGET_REL_DIR}/miniaudio"
-    fi
-
+if [ ! -d "${TARGET_REL_DIR}/miniaudio" ]; then
     mkdir "${TARGET_REL_DIR}/miniaudio"
     cp -R "${SOURCE_MA_REL_DIR}/." "${TARGET_REL_DIR}/miniaudio/"
-else
-    if [ ! -d "${TARGET_REL_DIR}/miniaudio" ]; then
-        mkdir "${TARGET_REL_DIR}/miniaudio"
-        cp -R "${SOURCE_MA_REL_DIR}/." "${TARGET_REL_DIR}/miniaudio/"
-    fi
 fi
 
 # Debug
