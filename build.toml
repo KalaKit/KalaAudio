@@ -1,0 +1,58 @@
+[project]
+name="kalaaudio"
+version="1-2-0"
+kmake="project.kmake"
+
+[references]
+dir_kh="../kalaheaders"
+dir_ma="../../_forks/miniaudio/_build/build/0-11-25"
+ext_kh="external/kalaheaders"
+ext_ma="external/miniaudio"
+
+[windows-sync]
+kh_license=[ "${dir_kh}/LICENSE.md", "${ext_kh}/LICENSE.md", "copy" ]
+kh_readme=[ "${dir_kh}/README.md", "${ext_kh}/README.md", "copy" ]
+kh_include=[ "${dir_kh}/include", "${ext_kh}/include", "copy" ]
+ma_stuff=[ "${dir_ma}", "${ext_ma}", "copy" ]
+
+[windows-post-build-sync]
+kl_bin_rel=[ "build/temp/release-windows/kalaaudio.lib", "build/${version}/kalaaudio.lib", "copy" ]
+kl_bin_deb=[ "build/temp/debug-windows/kalaaudiod.lib", "build/${version}/kalaaudiod.lib", "copy" ]
+kl_include=[ "include", "build/${version}/include", "copy" ]
+kl_license=[ "LICENSE.md", "build/${version}/LICENSE.md", "copy" ]
+kl_readme=[ "README.md", "build/${version}/README.md", "copy" ]
+kl_changes=[ "CHANGES.md", "build/${version}/CHANGES.md", "copy" ]
+kh_stuff=[ "${ext_kh}", "build/${version}/kalaheaders", "copy" ]
+ma_stuff=[ "${ext_ma}", "build/${version}/miniaudio", "copy" ]
+
+[windows-gnu-sync]
+kh_license=[ "${dir_kh}/LICENSE.md", "${ext_kh}/LICENSE.md", "copy" ]
+kh_readme=[ "${dir_kh}/README.md", "${ext_kh}/README.md", "copy" ]
+kh_include=[ "${dir_kh}/include", "${ext_kh}/include", "copy" ]
+ma_stuff=[ "${dir_ma}", "${ext_ma}", "copy" ]
+
+[windows-gnu-post-build-sync]
+kl_bin_rel=[ "build/temp/release-windows-gnu/kalaaudio-gnu.lib", "build/${version}/kalaaudio-gnu.lib", "copy" ]
+kl_bin_deb=[ "build/temp/debug-windows-gnu/kalaaudio-gnud.lib", "build/${version}/kalaaudio-gnud.lib", "copy" ]
+kl_include=[ "include", "build/${version}/include", "copy" ]
+kl_license=[ "LICENSE.md", "build/${version}/LICENSE.md", "copy" ]
+kl_readme=[ "README.md", "build/${version}/README.md", "copy" ]
+kl_changes=[ "CHANGES.md", "build/${version}/CHANGES.md", "copy" ]
+kh_stuff=[ "${ext_kh}", "build/${version}/kalaheaders", "copy" ]
+ma_stuff=[ "${ext_ma}", "build/${version}/miniaudio", "copy" ]
+
+[linux-sync]
+kh_license=[ "${dir_kh}/LICENSE.md", "${ext_kh}/LICENSE.md", "copy" ]
+kh_readme=[ "${dir_kh}/README.md", "${ext_kh}/README.md", "copy" ]
+kh_include=[ "${dir_kh}/include", "${ext_kh}/include", "copy" ]
+ma_stuff=[ "${dir_ma}", "${ext_ma}", "copy" ]
+
+[linux-post-build-sync]
+kl_bin_rel=[ "build/temp/release-linux/libkalaaudio.a", "build/${version}/libkalaaudio.a", "copy" ]
+kl_bin_deb=[ "build/temp/debug-linux/libkalaaudiod.a", "build/${version}/libkalaaudiod.a", "copy" ]
+kl_include=[ "include", "build/${version}/include", "copy" ]
+kl_license=[ "LICENSE.md", "build/${version}/LICENSE.md", "copy" ]
+kl_readme=[ "README.md", "build/${version}/README.md", "copy" ]
+kl_changes=[ "CHANGES.md", "build/${version}/CHANGES.md", "copy" ]
+kh_stuff=[ "${ext_kh}", "build/${version}/kalaheaders", "copy" ]
+ma_stuff=[ "${ext_ma}", "build/${version}/miniaudio", "copy" ]
