@@ -68,7 +68,7 @@ static void PrintErrorMessage(
 	Log::Print(
 		message,
 		type,
-		LogType::ERROR,
+		LogType::LOG_ERROR,
 		2);
 }
 
@@ -144,7 +144,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Cannot initialize MiniAudio because it is already initialized!",
 				"AUDIO",
-				LogType::ERROR,
+				LogType::LOG_ERROR,
 				2);
 
 			return false;
@@ -175,7 +175,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Failed to initialize MiniAudio!",
 				"AUDIO",
-				LogType::ERROR,
+				LogType::LOG_ERROR,
 				2);
 
 			return false;
@@ -184,7 +184,7 @@ namespace KalaAudio::Core
 		Log::Print(
 			"Initialized MiniAudio!",
 			"AUDIO",
-			LogType::SUCCESS);
+			LogType::LOG_SUCCESS);
 
 		isInitialized = true;
 
@@ -219,7 +219,7 @@ namespace KalaAudio::Core
 		Log::Print(
 			"Shut down MiniAudio!",
 			"AUDIO",
-			LogType::SUCCESS);
+			LogType::LOG_SUCCESS);
 	}
 
 	//
@@ -276,7 +276,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Set audio player '" + to_string(ID) + "' mute state to '" + stateStr + "'!",
 				"AUDIO_LISTENER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -333,7 +333,7 @@ namespace KalaAudio::Core
 				"Set listener position to '"
 				+ to_string(pos.x) + ", " + to_string(pos.y) + ", " + to_string(pos.z),
 				"AUDIO_LISTENER_VERBOSE",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -390,7 +390,7 @@ namespace KalaAudio::Core
 				"Set listener up to '"
 				+ to_string(up.x) + ", " + to_string(up.y) + ", " + to_string(up.z),
 				"AUDIO_LISTENER_VERBOSE",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -447,7 +447,7 @@ namespace KalaAudio::Core
 				"Set listener velocity to '"
 				+ to_string(vel.x) + ", " + to_string(vel.y) + ", " + to_string(vel.z) + "'!",
 				"AUDIO_LISTENER_VERBOSE",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -504,7 +504,7 @@ namespace KalaAudio::Core
 				"Set listener direction to '"
 				+ to_string(dir.x) + ", " + to_string(dir.y) + ", " + to_string(dir.z),
 				"AUDIO_LISTENER_VERBOSE",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -581,7 +581,7 @@ namespace KalaAudio::Core
 				+ "cone outer angle to '" + to_string(outerAngleClamped)
 				+ "' and cone outer gain to '" + to_string(outerGainClamped) + "'!",
 				"AUDIO_LISTENER_VERBOSE",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -656,7 +656,7 @@ namespace KalaAudio::Core
 				Log::Print(
 					"Failed to create audio file '" + name + "' from path '" + filePath + "'!",
 					"AUDIO",
-					LogType::ERROR,
+					LogType::LOG_ERROR,
 					2);
 
 				return nullptr;
@@ -670,7 +670,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				oss.str(),
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 		//decode and stream audio instead of loading entirely into memory
 		else
@@ -683,7 +683,7 @@ namespace KalaAudio::Core
 				Log::Print(
 					"Failed to create audio file '" + name + "' from path '" + filePath + "'!",
 					"AUDIO",
-					LogType::ERROR,
+					LogType::LOG_ERROR,
 					2);
 
 				return nullptr;
@@ -706,7 +706,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				oss.str(),
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 
 		ma_sound_set_volume(&pData->sound, 1.0f);
@@ -735,7 +735,7 @@ namespace KalaAudio::Core
 		Log::Print(
 			"Created audio file '" + name + "' with ID '" + to_string(newID) + "'!",
 			"AUDIO_PLAYER",
-			LogType::SUCCESS);
+			LogType::LOG_SUCCESS);
 
 		return trackPtr;
 	}
@@ -786,7 +786,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Changed audio player old name '" + oldName + "' to new name '" + name + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -823,7 +823,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Started playing audio player '" + name + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -875,7 +875,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Set playback position for audio player '" + name + "' to '" + to_string(newPosition) + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -898,7 +898,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Paused audio player '" + name + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 	void AudioPlayer::Continue() const
@@ -919,7 +919,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Continuing playing audio player '" + name + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -950,7 +950,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Set audio player '" + name + "' loop state to '" + state + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -984,7 +984,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Stopped playing audio player '" + name + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -1015,7 +1015,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Set audio player '" + name + "' volume to '" + to_string(clamped) + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -1045,7 +1045,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Set audio player '" + name + "' spatialization state to '" + stateVal + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -1085,7 +1085,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Set audio player '" + name + "' positioning state to '" + valStr + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -1116,7 +1116,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Set audio player '" + name + "' pitch to '" + to_string(clamped) + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -1147,7 +1147,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Set audio player '" + name + "' pan to '" + to_string(clamped) + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -1186,7 +1186,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Set audio player '" + name + "' pan mode to '" + valStr + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -1222,7 +1222,7 @@ namespace KalaAudio::Core
 				"Set audio player '" + name + "' position to '"
 				+ to_string(pos.x) + ", " + to_string(pos.y) + ", " + to_string(pos.z) + "'!",
 				"AUDIO_PLAYER_VERBOSE",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -1258,7 +1258,7 @@ namespace KalaAudio::Core
 				"Set audio player '" + name + "' velocity to '"
 				+ to_string(vel.x) + ", " + to_string(vel.y) + ", " + to_string(vel.z) + "'!",
 				"AUDIO_PLAYER_VERBOSE",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -1294,7 +1294,7 @@ namespace KalaAudio::Core
 				"Set player direction to '"
 				+ to_string(dir.x) + ", " + to_string(dir.y) + ", " + to_string(dir.z),
 				"AUDIO_PLAYER_VERBOSE",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 	
@@ -1351,7 +1351,7 @@ namespace KalaAudio::Core
 				+ "cone outer angle to '" + to_string(outerAngleClamped)
 				+ "' and cone outer gain to '" + to_string(outerGainClamped) + "'!",
 				"AUDIO_PLAYER_VERBOSE",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -1389,7 +1389,7 @@ namespace KalaAudio::Core
 				Log::Print(
 					"Set audio player '" + name + "' attenuation mode to 'none'!",
 					"AUDIO_PLAYER",
-					LogType::INFO);
+					LogType::LOG_INFO);
 			}
 
 			break;
@@ -1401,7 +1401,7 @@ namespace KalaAudio::Core
 				Log::Print(
 					"Set audio player '" + name + "' attenuation mode to 'inverse'!",
 					"AUDIO_PLAYER",
-					LogType::INFO);
+					LogType::LOG_INFO);
 			}
 
 			break;
@@ -1413,7 +1413,7 @@ namespace KalaAudio::Core
 				Log::Print(
 					"Set audio player '" + name + "' attenuation mode to 'linear'!",
 					"AUDIO_PLAYER",
-					LogType::INFO);
+					LogType::LOG_INFO);
 			}
 
 			break;
@@ -1425,7 +1425,7 @@ namespace KalaAudio::Core
 				Log::Print(
 					"Set audio player '" + name + "' attenuation mode to 'exponential'!",
 					"AUDIO_PLAYER",
-					LogType::INFO);
+					LogType::LOG_INFO);
 			}
 
 			break;
@@ -1459,7 +1459,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Set audio player '" + name + "' rolloff factor to '" + to_string(clamped) + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -1490,7 +1490,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Set audio player '" + name + "' doppler factor to '" + to_string(clamped) + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -1521,7 +1521,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Set audio player '" + name + "' min gain to '" + to_string(clamped) + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -1552,7 +1552,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Set audio player '" + name + "' max gain to '" + to_string(clamped) + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -1584,7 +1584,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Set audio player '" + name + "' min range to '" + to_string(clamped) + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -1615,7 +1615,7 @@ namespace KalaAudio::Core
 			Log::Print(
 				"Set audio player '" + name + "' max range to '" + to_string(clamped) + "'!",
 				"AUDIO_PLAYER",
-				LogType::INFO);
+				LogType::LOG_INFO);
 		}
 	}
 
@@ -1635,7 +1635,7 @@ namespace KalaAudio::Core
 		Log::Print(
 			"Destroying audio player '" + to_string(ID) + "'!",
 			"AUDIO_PLAYER",
-			LogType::INFO);
+			LogType::LOG_INFO);
 
 		auto it = playerMap.find(ID);
 		if (it != playerMap.end()) playerMap.erase(it);
