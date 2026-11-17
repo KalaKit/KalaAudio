@@ -717,20 +717,18 @@ namespace KalaAudio::Core
 
 		playerMap[newID] = std::move(pData);
 
-		unique_ptr<AudioPlayer> newTrack = make_unique<AudioPlayer>();
-		AudioPlayer* trackPtr = newTrack.get();
-
-		trackPtr->name = name;
-		trackPtr->filePath = filePath;
-		trackPtr->ID = newID;
-
-		string err = registry.AddContent(newID, std::move(newTrack));
+		AudioPlayer* trackPtr{};
+		string err = registry.AddContent(newID, trackPtr);
 		if (!err.empty())
 		{
 			KalaAudioCore::ForceClose(
 				"KalaAudio audio error",
 				"Failed to initialize audio player! Reason: " + err);
 		}
+
+		trackPtr->name = name;
+		trackPtr->filePath = filePath;
+		trackPtr->ID = newID;
 
 		Log::Print(
 			"Created audio file '" + name + "' with ID '" + to_string(newID) + "'!",
